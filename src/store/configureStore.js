@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import thunk from 'redux-thunk';
 import createRootReducer from '../reducers';
 import createHelpers from './createHelpers';
@@ -11,6 +12,7 @@ export default function configureStore(initialState, config) {
   const middleware = [
     thunk.withExtraArgument(helpers),
     apolloClient.middleware(),
+    thunk.withExtraArgument(getFirebase),
   ];
 
   let enhancer;
@@ -26,16 +28,19 @@ export default function configureStore(initialState, config) {
 
     enhancer = compose(
       applyMiddleware(...middleware),
+      reactReduxFirebase(config.firebase, { userProfile: 'users' }),
       devToolsExtension,
     );
   } else {
-    enhancer = applyMiddleware(...middleware);
+    enhancer = compose(
+      applyMiddleware(...middleware),
+      reactReduxFirebase(config.firebase, { userProfile: 'users' }),
+    );
   }
 
   const rootReducer = createRootReducer({
     apolloClient,
   });
-
   // See https://github.com/rackt/redux/releases/tag/v3.1.0
   const store = createStore(rootReducer, initialState, enhancer);
 

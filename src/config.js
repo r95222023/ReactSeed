@@ -32,7 +32,15 @@ module.exports = {
     // API URL to be used in the server-side code
     serverUrl: process.env.API_SERVER_URL || `http://localhost:${process.env.PORT || 3000}`,
   },
-
+  // Firebase
+  firebase: {
+    apiKey: 'AIzaSyD1QuVuXE81LnATALbIRBezHWLCRfhcCbc',
+    authDomain: 'fantasticpet-77a98.firebaseapp.com',
+    databaseURL: 'https://fantasticpet-77a98.firebaseio.com',
+    projectId: 'fantasticpet-77a98',
+    storageBucket: '',
+    messagingSenderId: '380554553185',
+  },
   // Database
   databaseUrl: process.env.DATABASE_URL || 'sqlite:database.sqlite',
 
