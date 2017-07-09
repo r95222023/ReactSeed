@@ -39,6 +39,7 @@ import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { setLocale } from './actions/intl';
 import config from './config';
+import firebaseConfig from './config.firebase';
 
 const app = express();
 
@@ -48,6 +49,8 @@ const app = express();
 // -----------------------------------------------------------------------------
 global.navigator = global.navigator || {};
 global.navigator.userAgent = global.navigator.userAgent || 'all';
+// simulate browser's XMLHttpRequest for firebase client
+global.XMLHttpRequest = global.XMLHttpRequest ? global.XMLHttpRequest : require('xmlhttprequest').XMLHttpRequest;
 
 //
 // Register Node.js middleware
@@ -142,6 +145,7 @@ app.get('*', async (req, res, next) => {
       cookie: req.headers.cookie,
       apolloClient,
       fetch,
+      firebase: firebaseConfig,
       // I should not use `history` on server.. but how I do redirection? follow universal-router
       history: null,
     });

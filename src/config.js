@@ -32,15 +32,6 @@ module.exports = {
     // API URL to be used in the server-side code
     serverUrl: process.env.API_SERVER_URL || `http://localhost:${process.env.PORT || 3000}`,
   },
-  // Firebase
-  firebase: {
-    apiKey: 'AIzaSyD1QuVuXE81LnATALbIRBezHWLCRfhcCbc',
-    authDomain: 'fantasticpet-77a98.firebaseapp.com',
-    databaseURL: 'https://fantasticpet-77a98.firebaseio.com',
-    projectId: 'fantasticpet-77a98',
-    storageBucket: '',
-    messagingSenderId: '380554553185',
-  },
   // Database
   databaseUrl: process.env.DATABASE_URL || 'sqlite:database.sqlite',
 
@@ -52,12 +43,12 @@ module.exports = {
 
   // Authentication
   auth: {
-    jwt: { secret: process.env.JWT_SECRET || 'React Starter Kit' },
+    jwt: { secret: process.env.JWT_SECRET || 'FantasticPet' },
 
     // https://developers.facebook.com/
     facebook: {
-      id: process.env.FACEBOOK_APP_ID || '186244551745631',
-      secret: process.env.FACEBOOK_APP_SECRET || 'a970ae3240ab4b9b8aae0f9f0661c6fc',
+      id: process.env.FACEBOOK_APP_ID || '1738256689523106',
+      secret: process.env.FACEBOOK_APP_SECRET || 'be0a6e7d11bdfde9bb83826ce6fe800d',
     },
 
     // https://cloud.google.com/console/project

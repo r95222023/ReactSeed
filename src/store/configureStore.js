@@ -28,7 +28,7 @@ export default function configureStore(initialState, config) {
 
     enhancer = compose(
       applyMiddleware(...middleware),
-      reactReduxFirebase(config.firebase, { userProfile: 'users' }),
+      reactReduxFirebase(config.firebase, { userProfile: 'users', enableRedirectHandling: false }),
       devToolsExtension,
     );
   } else {
