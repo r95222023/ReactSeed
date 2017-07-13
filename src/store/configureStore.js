@@ -1,9 +1,19 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import { reactReduxFirebase } from 'react-redux-firebase';
 import thunk from 'redux-thunk';
+// firebase
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/storage';
+
 import createRootReducer from '../reducers';
 import createHelpers from './createHelpers';
 import createLogger from './logger';
+import fbConfig from '../config.firebase';
+
+// initialize firebase instance
+firebase.initializeApp(fbConfig);
 
 export default function configureStore(initialState, config) {
   const helpers = createHelpers(config);
@@ -12,7 +22,6 @@ export default function configureStore(initialState, config) {
   const middleware = [
     thunk.withExtraArgument(helpers),
     apolloClient.middleware(),
-    thunk.withExtraArgument(getFirebase),
   ];
 
   let enhancer;
@@ -27,14 +36,14 @@ export default function configureStore(initialState, config) {
     }
 
     enhancer = compose(
+      reactReduxFirebase(firebase, { userProfile: 'users', enableRedirectHandling: false }),
       applyMiddleware(...middleware),
-      reactReduxFirebase(config.firebase, { userProfile: 'users', enableRedirectHandling: false }),
       devToolsExtension,
     );
   } else {
     enhancer = compose(
+      reactReduxFirebase(firebase, { userProfile: 'users', enableRedirectHandling: false }),
       applyMiddleware(...middleware),
-      reactReduxFirebase(config.firebase, { userProfile: 'users' }),
     );
   }
 

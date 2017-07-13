@@ -40,6 +40,11 @@ const messages = defineMessages({
     defaultMessage: 'Sign up',
     description: 'Sign up link in header',
   },
+  test: {
+    id: 'navigation.test',
+    defaultMessage: 'Test',
+    description: 'Test link in header',
+  },
 });
 
 class Navigation extends React.Component {
@@ -48,6 +53,9 @@ class Navigation extends React.Component {
       <div className={s.root} role="navigation">
         <Link className={s.link} to="/about">
           <FormattedMessage {...messages.about} />
+        </Link>
+        <Link className={s.link} to="/test">
+          <FormattedMessage {...messages.test} />
         </Link>
         <Link className={s.link} to="/contact">
           <FormattedMessage {...messages.contact} />

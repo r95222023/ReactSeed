@@ -1,3 +1,5 @@
+import { getFirebase } from 'react-redux-firebase';
+
 const graphqlRequestDeprecatedMessage = `\`graphqlRequest\` has been deprecated.
 You should use Apollo: \`client.query({ query, variables...})\` or \`client.mutate()\`
 Don't forget to enclose your query to gql\`…\` tag or import *.graphql file.
@@ -37,6 +39,7 @@ export default function createHelpers({ apolloClient, fetch, history }) {
     client: apolloClient,
     history,
     fetch,
+    getFirebase,
     // @deprecated('Use `client` instead')
     apolloClient,
     // @deprecated('Use `client.query()` or `client.mutate()` instead')

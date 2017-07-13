@@ -1,8 +1,8 @@
 export default {
-  apiKey: 'AIzaSyD1QuVuXE81LnATALbIRBezHWLCRfhcCbc',
-  authDomain: 'fantasticpet-77a98.firebaseapp.com',
-  databaseURL: 'https://fantasticpet-77a98.firebaseio.com',
-  projectId: 'fantasticpet-77a98',
-  storageBucket: '',
-  messagingSenderId: '380554553185',
+  apiKey: 'AIzaSyDVgizVrEvbsRK97WyYsHreEDH_iCxVjsk',
+  authDomain: 'petawesome-c6cbf.firebaseapp.com',
+  databaseURL: 'https://petawesome-c6cbf.firebaseio.com',
+  projectId: 'petawesome-c6cbf',
+  storageBucket: 'petawesome-c6cbf.appspot.com',
+  messagingSenderId: '73020160994',
 };

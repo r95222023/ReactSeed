@@ -40,7 +40,6 @@ module.exports = {
     // https://analytics.google.com/
     googleTrackingId: process.env.GOOGLE_TRACKING_ID, // UA-XXXXX-X
   },
-
   // Authentication
   auth: {
     jwt: { secret: process.env.JWT_SECRET || 'FantasticPet' },

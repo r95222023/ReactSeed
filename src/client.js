@@ -27,7 +27,6 @@ import history from './history';
 import createApolloClient from './core/createApolloClient';
 import router from './router';
 import { getIntl } from './actions/intl';
-import firebaseConfig from './config.firebase';
 
 const apolloClient = createApolloClient();
 
@@ -46,7 +45,7 @@ const fetch = createFetch(self.fetch, {
 // Initialize a new Redux store
 // http://redux.js.org/docs/basics/UsageWithReact.html
 const store = configureStore(window.App.state, {
-  apolloClient, fetch, history, firebase: firebaseConfig,
+  apolloClient, fetch, history,
 });
 
 // Global (context) variables that can be easily accessed from any React component
