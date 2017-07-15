@@ -42,7 +42,7 @@ module.exports = {
   },
   // Authentication
   auth: {
-    jwt: { secret: process.env.JWT_SECRET || 'FantasticPet' },
+    jwt: { secret: process.env.JWT_SECRET || 'FantasticPets' },
 
     // https://developers.facebook.com/
     facebook: {

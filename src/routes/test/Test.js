@@ -1,9 +1,21 @@
+/* eslint-disable */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import Button from 'material-ui/Button';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import {
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from 'material-ui/Dialog';
+import Dialog from '../../components/Dialog';
+import Drawer from '../../components/Drawer';
 import { login, logout } from '../../actions/firebase';
+import { toggleDialog, toggleDrawer } from '../../actions/ui';
 import s from './Test.css';
 
 class Test extends React.Component {
@@ -17,7 +29,7 @@ class Test extends React.Component {
   };
 
   render() {
-    const { loginWithProvider, _logout, auth } = this.props;
+    const { loginWithProvider, _logout, _toggleDialog, _toggleDrawer, auth } = this.props;
     const loginPanel = (
       <div className={s.container}>
         <p className={s.lead}>Log in with your username or company email address.</p>
@@ -117,7 +129,39 @@ class Test extends React.Component {
     );
     const userPanel = (
       <div className={s.container}>
-        <div><h1>User: {auth.displayName}</h1><button onClick={_logout}>Log out</button></div>
+        <Dialog>
+          <DialogTitle>
+            {"Use Google's location service?"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Let Google help apps determine location. This means sending anonymous location data to
+              Google, even when no apps are running.
+            </DialogContentText>
+            <Button onClick={_toggleDialog}>close</Button>
+          </DialogContent>
+        </Dialog>
+        <Drawer
+          anchor="right"
+          onBackdropClick={_toggleDrawer('right')}
+        >
+          <div>
+            <List className={s.list} disablePadding>
+              <div>
+                <ListItem button>
+                  <ListItemText primary="Inbox" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemText primary="Starred" />
+                </ListItem>
+              </div>
+            </List>
+          </div>
+        </Drawer>
+        <Button onClick={_toggleDialog}>Show Dialog</Button>
+        <Button onClick={_toggleDrawer('right')}>Show Drawer</Button>
+
+        <div><h1>User: {auth.displayName}</h1><Button onClick={_logout}>Log out</Button></div>
       </div>
     );
     return (
@@ -147,6 +191,12 @@ const mapDispatchToProps = dispatch => ({
   },
   _logout: () => {
     dispatch(logout());
+  },
+  _toggleDialog: () => {
+    dispatch(toggleDialog());
+  },
+  _toggleDrawer: anchor => () => {
+    dispatch(toggleDrawer(anchor));
   },
 });
 
